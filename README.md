@@ -14,7 +14,7 @@
   <h3 align="center">code-runner</h3>
 
   <p align="center">
-    _ run supported lang files with single command _
+    <i>run supported lang files with single command</i>
     <br />
     <a href="https://github.com/proffapt/code-runner"><strong>Explore the docs »</strong></a>
     <br />
@@ -65,7 +65,7 @@ This is a script written in bash, which compiles the code file and run it for yo
 
 This project is made with following langs/frameworks.
 
-* [BASH]
+* BASH
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -100,7 +100,7 @@ _Now since we are done with the setting up of environment suitable for the proje
    ```
 3. Add the alias to you shell config file
    ```sh
-   alias run="path/to/crunner"
+   echo "alias run="path/to/crunner"" >> ~/.SHELL_CONFIG
    source ~/.SHELL_CONFIG
    ```
 
@@ -110,14 +110,11 @@ _Now since we are done with the setting up of environment suitable for the proje
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. Simple usage:
-    
-    run hello_word.c
-
 <div align="center">
   <a href="https://github.com/proffapt/code-runner">
     <img src=".images/usage.png" alt="usage">
   </a>
+</div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

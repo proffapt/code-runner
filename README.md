@@ -14,7 +14,7 @@
   <h3 align="center">code-runner</h3>
 
   <p align="center">
-    _run supported lang files with single command_
+    _ run supported lang files with single command _
     <br />
     <a href="https://github.com/proffapt/code-runner"><strong>Explore the docs »</strong></a>
     <br />
@@ -114,6 +114,10 @@ _Now since we are done with the setting up of environment suitable for the proje
     
     run hello_word.c
 
+<div align="center">
+  <a href="https://github.com/proffapt/code-runner">
+    <img src=".images/usage.png" alt="usage">
+  </a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

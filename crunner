@@ -2,17 +2,16 @@
 
 ## Colors !
 
-red="\e[0;91m"
-blue="\e[0;94m"
-expand_bg="\e[K"
-blue_bg="\e[0;104m${expand_bg}"
-red_bg="\e[0;101m${expand_bg}"
-green_bg="\e[0;102m${expand_bg}"
-green="\e[0;92m"
-white="\e[0;97m"
-bold="\e[1m"
-uline="\e[4m"
-reset="\e[0m"
+red=`tput setaf 1`
+green=`tput setaf 2`
+yellow=`tput setaf 3`
+blue=`tput setaf 4`
+purple=`tput setaf 5`
+cyan=`tput setaf 6`
+white=`tput setaf 7`
+black=`tput setaf 8`
+orange=`tput setaf 9`
+clean=$(tput sgr0)
 
 ## Help menu
 
@@ -49,7 +48,9 @@ elif [[ "${FILE#*.}" == cpp ]]; then
 
 else 
 
-    echo "${red}ERROR:${reset} Unsupported filetype specified.
-${blue}Exitting crunner..${reset}"
+    ERROR=$(echo "${white}Unsupported filetype specified.")
+
+    echo "${red}ERROR:" $ERROR
+    echo "${blue}Exitting crunner.."
 
 fi

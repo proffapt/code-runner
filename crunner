@@ -2,22 +2,14 @@
 
 ## Colors !
 
-red=`tput setaf 1`
-green=`tput setaf 2`
-yellow=`tput setaf 3`
-blue=`tput setaf 4`
-purple=`tput setaf 5`
-cyan=`tput setaf 6`
-white=`tput setaf 7`
-black=`tput setaf 8`
-orange=`tput setaf 9`
-clean=$(tput sgr0)
+red=$(tput setaf 1)
+blue=$(tput setaf 4)
+white=$(tput setaf 7)
 
 ## Help menu
 
 USAGE="$(basename "$0"): ./crunner filename.extension -- compiles and executes the executable
 
-NOTE: You must run this tool in the directory where the code file is.
 "
 
 while getopts f:h input
@@ -30,27 +22,41 @@ h) echo "${USAGE}" && exit 0 ;;
 esac
 done
 
-## Logic for runnig(compiling+executing) files
+run(){
+	if [[ "${FILE#*.}" == c ]]; then
 
-FILE=$1
+    	gcc -Wall -g "$FILE" -o "${FILE%%.*}"
+    	rm -rf ./"${FILE%%.*}".dSYM
+    	./"${FILE%%.*}"
 
-if [[ "${FILE#*.}" == c ]]; then
+	elif [[ "${FILE#*.}" == cpp ]]; then
 
-    gcc -Wall -g $1 -o ${FILE%%.*}
-    rm -rf ./${FILE%%.*}.dSYM
-    ./${FILE%%.*}
+    	g++ -Wall -g "$FILE" -o "${FILE%%.*}"
+    	rm -rf ./"${FILE%%.*}".dSYM
+    	./"${FILE%%.*}"
 
-elif [[ "${FILE#*.}" == cpp ]]; then
+	else
 
-    g++ -Wall -g $1 -o ${FILE%%.*}
-    rm -rf ./${FILE%%.*}.dSYM
-    ./${FILE%%.*}
+    	ERROR="$(echo "${white}Unsupported filetype specified.")"
 
-else 
+    	echo "${red}ERROR:" "$ERROR"
+    	echo "${blue}Exitting crunner.."
 
-    ERROR=$(echo "${white}Unsupported filetype specified.")
+	fi
+}
 
-    echo "${red}ERROR:" $ERROR
-    echo "${blue}Exitting crunner.."
+## Logic for checking backslash
 
+FILE_LOCATION="$1"
+
+if [[ "$FILE_LOCATION" != */* ]]; then
+	FILE="$FILE_LOCATION"
+	run
+else
+	LOCATION="${FILE_LOCATION%/*}"
+	FILE_NAME="${FILE_LOCATION##*/}"
+	FILE="$FILE_NAME"
+
+	cd "$LOCATION" || exit
+	run
 fi

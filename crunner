@@ -1,61 +1,91 @@
 #!/bin/bash
 
-## Colors !
-
 red=$(tput setaf 1)
 blue=$(tput setaf 4)
 white=$(tput setaf 7)
 
-## Help menu
+USAGE="./$(basename "$0") file -- compiles and executes the executable
+./$(basename "$0") d file -- compiles the file in debug mode and executes it
+./$(basename "$0") clean -- removes temp and debug files"
 
-USAGE="$(basename "$0"): ./crunner filename.extension -- compiles and executes the executable
-
-"
-
-while getopts f:h input
+while getopts h input
 do
 case "${input}"
 in
 h) echo "${USAGE}" && exit 0 ;;
-*)  echo
-	echo "Invalid option: -$input" && exit 0 ;;
+*) exit 0 ;;
 esac
 done
 
+_ERROR_UFT_C_(){
+	ERROR="$(echo "${white}This file type can't be compiled")"
+
+   	echo "${red}ERROR:" "$ERROR"
+}
+
+_ERROR_UFT_D_(){
+	ERROR="$(echo "${white}This file type doesn't support compilation in debug mode")"
+
+   	echo "${red}ERROR:" "$ERROR"
+}
+
+_EXIT_(){
+   	echo "${blue}Exitting crunner.."
+	exit 0;
+}
+
 run(){
 	if [[ "${FILE#*.}" == c ]]; then
-
-    	gcc -Wall -g "$FILE" -o "${FILE%%.*}.out"
-    	rm -rf ./"${FILE%%.*}".dSYM
+    	gcc -Wall "$FILE" -o "${FILE%%.*}.out"
     	./"${FILE%%.*}.out"
-
 	elif [[ "${FILE#*.}" == cpp ]]; then
-
-    	g++ -Wall -g "$FILE" -o "${FILE%%.*}.out"
-    	rm -rf ./"${FILE%%.*}".dSYM
+    	g++ -Wall "$FILE" -o "${FILE%%.*}.out"
     	./"${FILE%%.*}.out"
-
 	else
-
-    	ERROR="$(echo "${white}Unsupported filetype specified.")"
-
-    	echo "${red}ERROR:" "$ERROR"
-    	echo "${blue}Exitting crunner.."
-
+		_ERROR_UFT_C_
+		_EXIT_
 	fi
 }
 
-## Logic for checking backslash, enabling you to execute the code from anywhere else
+run_debug(){
+	if [[ "${FILE#*.}" == c ]]; then
+    	gcc -Wall -g -O0 "$FILE" -o "${FILE%%.*}.out"
+    	./"${FILE%%.*}.out"
+	elif [[ "${FILE#*.}" == cpp ]]; then
+    	g++ -Wall -g -O0 "$FILE" -o "${FILE%%.*}.out"
+    	./"${FILE%%.*}.out"
+	else
+		_ERROR_UFT_D_
+		_EXIT_
+	fi
+}
 
 FILE_LOCATION="$1"
 
-if [[ "$FILE_LOCATION" != */* ]]; then
+if [[ "$1" == "clean" ]]; then
+	find . -type d -name "*.dSYM" -exec rm -rf {} \; 2>/dev/null	
+	rm -rf tempCodeRunnerFile.c	
+elif [[ "$1" == "d" ]]; then
+	FILE_LOCATION="$2"
+	
+	if [[ "$FILE_LOCATION" != */* ]]; then
+		FILE="$FILE_LOCATION"
+
+		run_debug
+	else
+		LOCATION="${FILE_LOCATION%/*}"
+		FILE="${FILE_LOCATION##*/}"
+
+		cd "$LOCATION" || exit
+		run_debug
+	fi
+elif [[ "$FILE_LOCATION" != */* ]]; then
 	FILE="$FILE_LOCATION"
+
 	run
 else
 	LOCATION="${FILE_LOCATION%/*}"
-	FILE_NAME="${FILE_LOCATION##*/}"
-	FILE="$FILE_NAME"
+	FILE="${FILE_LOCATION##*/}"
 
 	cd "$LOCATION" || exit
 	run

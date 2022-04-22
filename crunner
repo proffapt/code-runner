@@ -25,15 +25,15 @@ done
 run(){
 	if [[ "${FILE#*.}" == c ]]; then
 
-    	gcc -Wall -g "$FILE" -o "${FILE%%.*}"
+    	gcc -Wall -g "$FILE" -o "${FILE%%.*}.out"
     	rm -rf ./"${FILE%%.*}".dSYM
-    	./"${FILE%%.*}"
+    	./"${FILE%%.*}.out"
 
 	elif [[ "${FILE#*.}" == cpp ]]; then
 
-    	g++ -Wall -g "$FILE" -o "${FILE%%.*}"
+    	g++ -Wall -g "$FILE" -o "${FILE%%.*}.out"
     	rm -rf ./"${FILE%%.*}".dSYM
-    	./"${FILE%%.*}"
+    	./"${FILE%%.*}.out"
 
 	else
 
@@ -45,7 +45,7 @@ run(){
 	fi
 }
 
-## Logic for checking backslash
+## Logic for checking backslash, enabling you to execute the code from anywhere else
 
 FILE_LOCATION="$1"
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-#shellcheck disable=SC2086
+# shellcheck disable=SC2086
 
 red=$(tput setaf 1)
 blue=$(tput setaf 4)
@@ -8,7 +8,7 @@ white=$(tput setaf 7)
 USAGE="run file -- compiles and executes the executable
 run --cc=<compiler> file -- compiles the *.c file with specified compiler
 run --cxx=<compiler> file -- compiles the *.cpp file with specified compiler
-run --debug file -- compiles the file in debug mode and executes it
+run --debug file -- compiles the file and pipes it to the specified debugger 
 run clean -- removes debug folder, .out and temp files"
 
 _ERROR_UFTC_() {
@@ -21,12 +21,14 @@ _EXIT_() {
 }
 
 default_debugger() {
+
 	KERNEL=$(uname -s)
-	if [[ $KERNEL == Darwin ]]; then
-		debugger=lldb
+	if [[ "$KERNEL" == Darwin ]]; then
+		debugger="lldb"
 	else
-		debugger=gdb
+		debugger="gdb"
 	fi
+
 }
 
 run() {
@@ -52,7 +54,6 @@ run() {
         rm -rf ./"${FILE%%.*}.out"
     elif [[ "${FILE#*.}" == cpp ]]; then
         "${CXX:=g++}" ${CFLAGS} ${FILE} -o "${FILE%%.*}.out"
-        ./"${FILE%%.*}.out"
 
 		if [ "${DEBUG}" = true ]; then
 			$debugger "${FILE%%.*}.out"
@@ -66,6 +67,7 @@ run() {
         _ERROR_UFTC_
         _EXIT_
     fi
+
 }
 
 if [[ -z $* ]]; then
@@ -84,6 +86,7 @@ for arg in "$@"; do
             _ERROR_UFTC_
             _EXIT_
         fi
+
         if [[ "${FILE_LOCATION}" != */* ]]; then
             FILE="${FILE_LOCATION}"
             run

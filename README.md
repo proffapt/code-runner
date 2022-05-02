@@ -107,7 +107,7 @@ _Now since we are done with the setting up of environment suitable for the proje
 run file -->> compiles and executes the executable
 run --cc=<compiler> file -->> compiles the *.c file with specified compiler
 run--cxx=<compiler> file -->> compiles the *.cpp file with specified compiler
-run --debug file -->> compiles the file in debug mode and executes it
+run --debug file -->> compiles the file and pipes it to the specified debugger
 run clean -->> removes debug folder, .out and temp files
 ```
 <p align="right">(<a href="#top">back to top</a>)</p>

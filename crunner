@@ -5,11 +5,11 @@ red=$(tput setaf 1)
 blue=$(tput setaf 4)
 white=$(tput setaf 7)
 
-USAGE="./$(basename "$0") file -- compiles and executes the executable
-./$(basename "$0") --cc=<compiler> file -- compiles the *.c file with specified compiler
-./$(basename "$0") --cxx=<compiler> file -- compiles the *.cpp file with specified compiler
-./$(basename "$0") --debug file -- compiles the file in debug mode and executes it
-./$(basename "$0") clean -- removes debug folder, .out and temp files"
+USAGE="run file -- compiles and executes the executable
+run --cc=<compiler> file -- compiles the *.c file with specified compiler
+run --cxx=<compiler> file -- compiles the *.cpp file with specified compiler
+run --debug file -- compiles the file in debug mode and executes it
+run clean -- removes debug folder, .out and temp files"
 
 _ERROR_UFTC_() {
     echo "${red}ERROR:" "${white}This file type can't be compiled or the file does not exist!"

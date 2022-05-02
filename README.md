@@ -39,12 +39,10 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#changelog">Change.log</a></li>
     <li><a href="#license">License</a></li>
@@ -52,7 +50,6 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -73,18 +70,6 @@ This project is made with following langs/frameworks.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
-
-### Prerequisites
-
-You will need to install the following dependencies for the project to work.
-* gcc
-  ```sh
-  sudo apt install -y gcc // DEBIAN based
-  brew install gcc // MACos
-  sudo pacman -Sy gcc // Arch
-  ```
-
 ### Installation
 
 _Now since we are done with the setting up of environment suitable for the project to compile/run, let's install and configure the project on your system locally now._
@@ -103,6 +88,14 @@ _Now since we are done with the setting up of environment suitable for the proje
    echo "alias run="path/to/crunner"" >> ~/.SHELL_CONFIG
    source ~/.SHELL_CONFIG
    ```
+4. Run the code
+   ```sh
+   run my_code.c
+   ```
+   OR
+   ```sh
+   run ~/path/to/my_code.c
+   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -110,27 +103,14 @@ _Now since we are done with the setting up of environment suitable for the proje
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-<div align="center">
-  <a href="https://github.com/proffapt/code-runner">
-    <img src=".images/usage.png" alt="usage">
-  </a>
-</div>
-
+```sh
+run file -->> compiles and executes the executable
+run --cc=<compiler> file -->> compiles the *.c file with specified compiler
+run--cxx=<compiler> file -->> compiles the *.cpp file with specified compiler
+run --debug file -->> compiles the file in debug mode and executes it
+run clean -->> removes debug folder, .out and temp files
+```
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add the Documentation other then README.md
-- [x] Add crunner
-- [x] Add support for c and cpp files
-- [x] Add the main documentation
-
-See the [open issues](https://github.com/proffapt/code-runner/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -152,18 +132,14 @@ Don't forget to give the project a star! Thanks again!
 <!-- Changelog -->
 # Changelog
 
-## v1.0.0
+## v1.1.0
 
 ### Added or Changed
 - Added this changelog :)
 - Added support for C and C++ files.
-- Added help menu
-
-
-### Removed
-
-- Removed the `-f` flag
-
+- New help menu
+- New debugger support
+- New code flow
 
 <!-- LICENSE -->
 ## License
@@ -187,8 +163,6 @@ Project Link: [https://github.com/proffapt/code-runner](https://github.com/proff
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to.
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [Img Shields](https://shields.io)

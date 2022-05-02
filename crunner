@@ -17,7 +17,7 @@ _ERROR_UFT_C_() {
 
 _EXIT_() {
     echo "${blue}Exitting crunner..."
-    exit 0;
+    exit 0
 }
 
 run() {
@@ -31,13 +31,13 @@ run() {
 
     if [[ "${FILE#*.}" == c ]]; then
         "${CC:=gcc}" ${CFLAGS} ${FILE} -o "${FILE%%.*}.out"
-    	./"${FILE%%.*}.out"
+        ./"${FILE%%.*}.out"
     elif [[ "${FILE#*.}" == cpp ]]; then
         "${CXX:=g++}" ${CFLAGS} ${FILE} -o "${FILE%%.*}.out"
-    	./"${FILE%%.*}.out"
+        ./"${FILE%%.*}.out"
     else
-	_ERROR_UFT_C_
-	_EXIT_
+        _ERROR_UFT_C_
+        _EXIT_
     fi
 }
 
@@ -45,57 +45,56 @@ if [[ -z $* ]]; then
     echo "${USAGE}" && exit 0
 fi
 
-for arg in "$@"
-do
-    case "${arg}"
-    in
-	"-h"|"--help")
-	    echo "${USAGE}" && exit 0
-	    ;;
-	*".c" | *".cpp")
-	    FILE_LOCATION="${arg}"
-	    if [ ! -f $FILE_LOCATION ]; then
-		_ERROR_UFT_C_
-		_EXIT_
-	    fi
-	    if [[ "${FILE_LOCATION}" != */* ]]; then
-		FILE="${FILE_LOCATION}"
-		run
-	    else
-		LOCATION="${FILE_LOCATION%/*}"
-		FILE="${FILE_LOCATION##*/}"
-		cd "${LOCATION}" || exit 1
-		run
-	    fi
-	    ;;
-	"--cc="*)
-	    c="${arg#*=}"
-	    if [[ -z "$c" ]]; then
-		echo "Use --cc=gcc/clang"
-	    else
-		export CC="${c}"
-		shift
-	    fi
-	    ;;
-	"--cxx="*)
-	    cx="${arg#*=}"
-	    if [[ -z "$cx" ]]; then
-		echo "Use --cxx=g++/clang++"
-	    else
-		export CXX="${cx}"
-		shift
-	    fi
-	    ;;
-	"clean")
-	    find . -type d -name "*.dSYM" -exec rm -rf {} \; 2>/dev/null
-	    rm -rf tempCodeRunnerFile.c
-	    ;;
-	"--debug")
-	    DEBUG=true
-	    ;;
-	*)
-	    _ERROR_UFT_C_
-	    _EXIT_
-	    ;;
+for arg in "$@"; do
+    case "${arg}" in
+
+    "-h" | "--help")
+        echo "${USAGE}" && exit 0
+        ;;
+    *".c" | *".cpp")
+        FILE_LOCATION="${arg}"
+        if [ ! -f $FILE_LOCATION ]; then
+            _ERROR_UFT_C_
+            _EXIT_
+        fi
+        if [[ "${FILE_LOCATION}" != */* ]]; then
+            FILE="${FILE_LOCATION}"
+            run
+        else
+            LOCATION="${FILE_LOCATION%/*}"
+            FILE="${FILE_LOCATION##*/}"
+            cd "${LOCATION}" || exit 1
+            run
+        fi
+        ;;
+    "--cc="*)
+        c="${arg#*=}"
+        if [[ -z "$c" ]]; then
+            echo "Use --cc=gcc/clang"
+        else
+            export CC="${c}"
+            shift
+        fi
+        ;;
+    "--cxx="*)
+        cx="${arg#*=}"
+        if [[ -z "$cx" ]]; then
+            echo "Use --cxx=g++/clang++"
+        else
+            export CXX="${cx}"
+            shift
+        fi
+        ;;
+    "clean")
+        find . -type d -name "*.dSYM" -exec rm -rf {} \; 2>/dev/null
+        rm -rf tempCodeRunnerFile.c
+        ;;
+    "--debug")
+        DEBUG=true
+        ;;
+    *)
+        _ERROR_UFT_C_
+        _EXIT_
+        ;;
     esac
 done

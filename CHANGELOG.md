@@ -1,14 +1,11 @@
 <!-- Changelog -->
 # Changelog
 
-## v1.0.0
+## v1.1.0
 
 ### Added or Changed
 - Added this changelog :)
 - Added support for C and C++ files.
-- Added help menu
-
-
-### Removed
-
-- Removed the `-f` flag
+- New help menu
+- New debugger support
+- New code flow

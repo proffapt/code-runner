@@ -72,9 +72,11 @@ clean() {
 }
 
 run() {
-
+	
+	set -m
 	default_debugger
-    CFLAGS="-Wall"
+    
+	CFLAGS="-Wall"
     if [ "${DEBUG}" = true ]; then
         CFLAGS+=" -g -O0"
     else
@@ -89,7 +91,7 @@ run() {
 			rm -rf ./"${FILE%%.*}.out.dSYM"
 		else
         	./"${FILE%%.*}.out"
-		fi
+       	fi
 
         rm -rf ./"${FILE%%.*}.out"
     elif [[ "${FILE#*.}" == cpp ]]; then

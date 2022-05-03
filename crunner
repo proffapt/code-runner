@@ -86,7 +86,7 @@ run() {
 	fi
 
 	if [[ ${FILE#*.} == c ]]; then
-		"${CC:=gcc}" "$CFLAGS" "$FILE" -o "${FILE%%.*}.out"
+		"${CC:=gcc}" ${CFLAGS} "$FILE" -o "${FILE%%.*}.out"
 
 		if [[ $DEBUG == true ]]; then
 			"$debugger" "${FILE%%.*}.out"
@@ -97,7 +97,7 @@ run() {
 
 		rm -rf ./"${FILE%%.*}.out"
 	elif [[ ${FILE#*.} == cpp ]]; then
-		"${CXX:=g++}" "$CFLAGS" "$FILE" -o "${FILE%%.*}.out"
+		"${CXX:=g++}" ${CFLAGS} "$FILE" -o "${FILE%%.*}.out"
 
 		if [[ $DEBUG == true ]]; then
 			"$debugger" "${FILE%%.*}.out"

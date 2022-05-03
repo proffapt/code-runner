@@ -1,34 +1,26 @@
 #!/bin/bash
 
-############################################################
-#              crunner - code-runner
-#
-# Compile and run codes written in supported langs.
-# Automate the process for compiling and executing
-# your code in multiple langs using singe command.
-#
-#
-#     Author: Arpit Bhardwaj(proffapt)
-#
-#     CO-AUTHORED BY: CyberKnight and PeroSar
-#
-#     Git(hub/lab): proffapt
-#
-#     Twitter: @proffapt
-#
-#     Telegram: @proffapt
-#
-#     Email: proffapt@pm.me
-#
-#     License: BSD License 2.0
-#
-#
-# Note: If You find any bugs in code-runner, please
-#       REPORT it to me by creating an Issue;
-#       Or if you have a fix, create a Pull Request.
-#
-############################################################
-# Can't rewrite without this banner(line 3-31)!
+##########################################################
+#              crunner - code-runner                     #
+#                                                        #
+#  Compile and run codes written in supported langs.     #
+#  Automate the process for compiling and executing      #
+#  your code in multiple langs using singe command.      #
+#                                                        #
+#      Author: Arpit Bhardwaj(proffapt)                  #
+#      CO-AUTHORED BY: CyberKnight and PeroSar           #
+#      Git(hub/lab): proffapt                            #
+#      Twitter: @proffapt                                #
+#      Telegram: @proffapt                               #
+#      Email: proffapt@pm.me                             #
+#      License: BSD License 2.0                          #
+#                                                        #
+#  Note: If You find any bugs in code-runner, please     #
+#        REPORT it to me by creating an Issue;           #
+#        Or if you have a fix, create a Pull Request.    #
+#                                                        #
+##########################################################
+# Can't rewrite without this banner(line 3-23)!
 
 red=$(tput setaf 1)
 yellow=$(tput setaf 3)

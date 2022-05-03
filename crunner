@@ -33,11 +33,11 @@ USAGE="${blue}USAGE:${white} run ${cyan}file ${yellow}:${white} compiles and exe
 ${blue}OPTIONS: ${white}
 	[${red}--cc=${white}/${red}-c${white}]=${cyan}<compiler>${white} ${yellow}:${white} compiles the *.c file with specified compiler
 	${red}--cxx${white}=${cyan}<compiler>${white}      ${yellow}:${white} compiles the *.cpp file with specified compiler
-	[${red}--debug${white}/${red}d${white}]           ${yellow}:${white} compiles the file and pipes it to the specified debugger 
+	[${red}--debug${white}/${red}d${white}]           ${yellow}:${white} compiles the file and pipes it to the specified debugger
 
 ${blue}Clean Utility:${white}
-run ${red}rclean-exe${white} ${yellow}:${white} deletes all executable files within the folder recursively 
-run ${red}clean-exe${white}  ${yellow}:${white} deletes all executable files within the folder NON recursively 
+run ${red}rclean-exe${white} ${yellow}:${white} deletes all executable files within the folder recursively
+run ${red}clean-exe${white}  ${yellow}:${white} deletes all executable files within the folder NON recursively
 run ${red}clean${white}      ${yellow}:${white} removes debug folder, .out and temp files"
 
 _ERROR_UFTC_() {
@@ -90,8 +90,8 @@ run() {
         "${CC:=gcc}" "$CFLAGS" "$FILE" -o "${FILE%%.*}.out"
 
         if [[ $DEBUG == true ]]; then
-	    $debugger "${FILE%%.*}.out"
-	    rm -rf ./"${FILE%%.*}.out.dSYM"
+	        $debugger "${FILE%%.*}.out"
+	        rm -rf ./"${FILE%%.*}.out.dSYM"
         else
             ./"${FILE%%.*}.out"
         fi
@@ -104,7 +104,7 @@ run() {
 	    $debugger "${FILE%%.*}.out"
 	    rm -rf ./"${FILE%%.*}.out.dSYM"
 	else
-            ./"${FILE%%.*}.out"
+        ./"${FILE%%.*}.out"
 	fi
         rm -rf ./"${FILE%%.*}.out"
     else
@@ -161,13 +161,13 @@ for arg in "$@"; do
         fi
         ;;
     "clean")
-	clean
+	    clean
 	;;
     "clean-exe")
-	clean_exe
+	    clean_exe
 	;;
     "rclean-exe")
-	rclean_exe
+	    rclean_exe
 	;;
     "--debug" | "d")
         DEBUG=true

@@ -1,7 +1,7 @@
 <!-- Changelog -->
 # Changelog
 
-## v1.1.0
+## v1.1.1
 
 ### Added or Changed
 - Added this changelog :)
@@ -9,3 +9,4 @@
 - New help menu
 - New debugger support
 - New code flow
+- More clean modes

@@ -1,23 +1,26 @@
 #!/bin/bash
-# shellcheck disable=SC2086
 
-                ###############################################################################################################
-                #                crunner - code-runner to compile and run codes written in supported langs                    #
-                #      Automate the process for compiling and executing your code in multiple langs using singe command.      #
-                #                                                                                                             #
-                #         Author: Arpit Bhardwaj(proffapt)                                                                    #
-				#         CO-AUTHORED BY: CyberKnight and PeroSar                                                             #
-				#         Git(hub/lab): proffapt                                                                              #
-                #         Twitter: @proffapt                                                                                  #
-                #         Telegram: @proffapt                                                                                 #
-                #         Email: proffapt@pm.me                                                                               #
-                #                                                                                                             #
-                #                  License: BSD License 2.0                                                                   #
-                #                  Note: If You find any bugs in code-runner, please REPORT it to me                          #
-                #                  by creating an Issue; Or if you have a fix, create a Pull Request.                         #
-                #                                                                                                             #
-                ###############################################################################################################
-				# Can't rewrite without this banner(line 4-19)!
+##########################################################
+#              crunner - code-runner                     #
+#                                                        #
+#  Compile and run codes written in supported langs.     #
+#  Automate the process for compiling and executing      #
+#  your code in multiple langs using singe command.      #
+#                                                        #
+#      Author: Arpit Bhardwaj(proffapt)                  #
+#      CO-AUTHORED BY: CyberKnight and PeroSar           #
+#      Git(hub/lab): proffapt                            #
+#      Twitter: @proffapt                                #
+#      Telegram: @proffapt                               #
+#      Email: proffapt@pm.me                             #
+#      License: BSD License 2.0                          #
+#                                                        #
+#  Note: If You find any bugs in code-runner, please     #
+#        REPORT it to me by creating an Issue;           #
+#        Or if you have a fix, create a Pull Request.    #
+#                                                        #
+##########################################################
+# Can't rewrite without this banner(line 3-23)!
 
 red=$(tput setaf 1)
 yellow=$(tput setaf 3)
@@ -30,80 +33,79 @@ USAGE="${blue}USAGE:${white} run ${cyan}file ${yellow}:${white} compiles and exe
 ${blue}OPTIONS: ${white}
 	[${red}--cc=${white}/${red}-c${white}]=${cyan}<compiler>${white} ${yellow}:${white} compiles the *.c file with specified compiler
 	${red}--cxx${white}=${cyan}<compiler>${white}      ${yellow}:${white} compiles the *.cpp file with specified compiler
-	[${red}--debug${white}/${red}d${white}]           ${yellow}:${white} compiles the file and pipes it to the specified debugger 
+	[${red}--debug${white}/${red}d${white}]           ${yellow}:${white} compiles the file and pipes it to the specified debugger
 
 ${blue}Clean Utility:${white}
-run ${red}rclean-exe${white} ${yellow}:${white} deletes all executable files within the folder recursively 
-run ${red}clean-exe${white}  ${yellow}:${white} deletes all executable files within the folder NON recursively 
+run ${red}rclean-exe${white} ${yellow}:${white} deletes all executable files within the folder recursively
+run ${red}clean-exe${white}  ${yellow}:${white} deletes all executable files within the folder NON recursively
 run ${red}clean${white}      ${yellow}:${white} removes debug folder, .out and temp files"
 
 _ERROR_UFTC_() {
-    echo "${red}ERROR:" "${white}This file type can't be compiled or the file does not exist!"
+    echo "${red}ERROR: ${white}This file type can't be compiled or the file does not exist!"
 }
 
 _EXIT_() {
-    echo "${blue}Exitting crunner..."
+    echo "${blue}Exiting crunner..."
     exit 0
 }
 
 ## choosing either gdb or lldb according to which one is present, if both are then gdb is prioritised
 default_debugger() {
 
-	if [ -n "$(command -v gdb)" ]; then
+    if [[ -n $(command -v gdb) ]]; then
     	: "${debugger:=gdb}"
-	elif [ -n "$(command -v lldb)" ]; then
+    elif [[ -n $(command -v lldb) ]]; then
     	: "${debugger:=lldb}"
-	fi
+    fi
 }
 
 rclean_exe() {
-	find . -type f -perm +111 -exec rm -rf {} \; 2>/dev/null
+    find . -type f -perm +111 -exec rm -rf {} \; 2>/dev/null
 }
 
 clean_exe() {
-	find . -type f -maxdepth 1 -perm +111 -exec rm -rf {} \; 2>/dev/null
+    find . -type f -maxdepth 1 -perm +111 -exec rm -rf {} \; 2>/dev/null
 }
 
 clean() {
 
-	find . -type d -name "*.dSYM" -exec rm -rf {} \; 2>/dev/null
+    find . -type d -name "*.dSYM" -exec rm -rf {} \; 2>/dev/null
     find . -type f -name "*.out" -exec rm -rf {} \; 2>/dev/null
     find . -type f -name "tempCodeRunnerFile.*" -exec rm -rf {} \; 2>/dev/null
 }
 
 run() {
-	
-	set -m
-	default_debugger
-    
-	CFLAGS="-Wall"
-    if [ "${DEBUG}" = true ]; then
+
+    set -m
+    default_debugger
+
+    CFLAGS="-Wall"
+    if [[ $DEBUG == true ]]; then
         CFLAGS+=" -g -O0"
     else
         CFLAGS+=" -s -w -O3"
     fi
 
-    if [[ "${FILE#*.}" == c ]]; then
-        "${CC:=gcc}" ${CFLAGS} ${FILE} -o "${FILE%%.*}.out"
+    if [[ ${FILE#*.} == c ]]; then
+        "${CC:=gcc}" "$CFLAGS" "$FILE" -o "${FILE%%.*}.out"
 
-		if [ "${DEBUG}" = true ]; then
-			$debugger "${FILE%%.*}.out"
-			rm -rf ./"${FILE%%.*}.out.dSYM"
-		else
-        	./"${FILE%%.*}.out"
-       	fi
-
+        if [[ $DEBUG == true ]]; then
+	        $debugger "${FILE%%.*}.out"
+	        rm -rf ./"${FILE%%.*}.out.dSYM"
+        else
+            ./"${FILE%%.*}.out"
+        fi
         rm -rf ./"${FILE%%.*}.out"
-    elif [[ "${FILE#*.}" == cpp ]]; then
-        "${CXX:=g++}" ${CFLAGS} ${FILE} -o "${FILE%%.*}.out"
 
-		if [ "${DEBUG}" = true ]; then
-			$debugger "${FILE%%.*}.out"
-			rm -rf ./"${FILE%%.*}.out.dSYM"
-		else
-        	./"${FILE%%.*}.out"
-		fi
+    elif [[ ${FILE#*.} == cpp ]]; then
+        "${CXX:=g++}" "$CFLAGS" "$FILE" -o "${FILE%%.*}.out"
 
+	if [[ $DEBUG == true ]]; then
+	    $debugger "${FILE%%.*}.out"
+	    rm -rf ./"${FILE%%.*}.out.dSYM"
+	else
+        ./"${FILE%%.*}.out"
+	fi
         rm -rf ./"${FILE%%.*}.out"
     else
         _ERROR_UFTC_
@@ -112,61 +114,61 @@ run() {
 }
 
 if [[ -z $* ]]; then
-    echo "${USAGE}" && exit 0
+    echo "$USAGE" && exit 0
 fi
 
 for arg in "$@"; do
-    case "${arg}" in
+    case $arg in
 
     "-h" | "--help")
-        echo "${USAGE}" && exit 0
+        echo "$USAGE" && exit 0
         ;;
     *".c" | *".cpp")
-        FILE_LOCATION="${arg}"
-        if [ ! -f "$FILE_LOCATION" ]; then
+        FILE_LOCATION=$arg
+        if [[ ! -f $FILE_LOCATION ]]; then
             _ERROR_UFTC_
             _EXIT_
         fi
 
-        if [[ "${FILE_LOCATION}" != */* ]]; then
-            FILE="${FILE_LOCATION}"
+        if [[ $FILE_LOCATION != */* ]]; then
+            FILE=$FILE_LOCATION
             run
         else
-            LOCATION="${FILE_LOCATION%/*}"
-            FILE="${FILE_LOCATION##*/}"
-            cd "${LOCATION}" || exit 1
+            LOCATION=${FILE_LOCATION%/*}
+            FILE=${FILE_LOCATION##*/}
+            cd "$LOCATION" || exit 1
             run
         fi
         ;;
     "--cc="* | "-c="*)
-        c="${arg#*=}"
-        if [[ -z "$c" ]]; then
+        c=${arg#*=}
+        if [[ -z $c ]]; then
             echo "Use --cc=gcc/clang"
             echo "OR"
             echo "Use -c=gcc/clang"
         else
-            export CC="${c}"
+            export CC=$c
             shift
         fi
         ;;
     "--cxx="*)
-        cx="${arg#*=}"
-        if [[ -z "$cx" ]]; then
+        cx=${arg#*=}
+        if [[ -z $cx ]]; then
             echo "Use --cxx=g++/clang++"
         else
-            export CXX="${cx}"
+            export CXX=$cx
             shift
         fi
         ;;
     "clean")
-		clean
-		;;
+	    clean
+	    ;;
     "clean-exe")
-		clean_exe
-		;;
+	    clean_exe
+	    ;;
     "rclean-exe")
-		rclean_exe
-		;;
+	    rclean_exe
+	    ;;
     "--debug" | "d")
         DEBUG=true
         ;;

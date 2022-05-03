@@ -1,15 +1,41 @@
 #!/bin/bash
 # shellcheck disable=SC2086
 
+                ###############################################################################################################
+                #                crunner - code-runner to compile and run codes written in supported langs                    #
+                #      Automate the process for compiling and executing your code in multiple langs using singe command.      #
+                #                                                                                                             #
+                #         Author: Arpit Bhardwaj(proffapt)                                                                    #
+				#         CO-AUTHORED BY: CyberKnight and PeroSar                                                             #
+				#         Git(hub/lab): proffapt                                                                              #
+                #         Twitter: @proffapt                                                                                  #
+                #         Telegram: @proffapt                                                                                 #
+                #         Email: proffapt@pm.me                                                                               #
+                #                                                                                                             #
+                #                  License: BSD License 2.0                                                                   #
+                #                  Note: If You find any bugs in code-runner, please REPORT it to me                          #
+                #                  by creating an Issue; Or if you have a fix, create a Pull Request.                         #
+                #                                                                                                             #
+                ###############################################################################################################
+				# Can't rewrite without this banner(line 4-19)!
+
 red=$(tput setaf 1)
+yellow=$(tput setaf 3)
 blue=$(tput setaf 4)
+cyan=$(tput setaf 6)
 white=$(tput setaf 7)
 
-USAGE="run file -- compiles and executes the executable
-run --cc=<compiler> file -- compiles the *.c file with specified compiler
-run --cxx=<compiler> file -- compiles the *.cpp file with specified compiler
-run --debug file -- compiles the file and pipes it to the specified debugger 
-run clean -- removes debug folder, .out and temp files"
+USAGE="${blue}USAGE:${white} run ${cyan}file ${yellow}:${white} compiles and executes the executable
+
+${blue}OPTIONS: ${white}
+	[${red}--cc=${white}/${red}-c${white}]=${cyan}<compiler>${white} ${yellow}:${white} compiles the *.c file with specified compiler
+	${red}--cxx${white}=${cyan}<compiler>${white}      ${yellow}:${white} compiles the *.cpp file with specified compiler
+	[${red}--debug${white}/${red}d${white}]           ${yellow}:${white} compiles the file and pipes it to the specified debugger 
+
+${blue}Clean Utility:${white}
+run ${red}rclean-exe${white} ${yellow}:${white} deletes all executable files within the folder recursively 
+run ${red}clean-exe${white}  ${yellow}:${white} deletes all executable files within the folder NON recursively 
+run ${red}clean${white}      ${yellow}:${white} removes debug folder, .out and temp files"
 
 _ERROR_UFTC_() {
     echo "${red}ERROR:" "${white}This file type can't be compiled or the file does not exist!"
@@ -20,15 +46,29 @@ _EXIT_() {
     exit 0
 }
 
+## choosing either gdb or lldb according to which one is present, if both are then gdb is prioritised
 default_debugger() {
 
-	KERNEL=$(uname -s)
-	if [[ "$KERNEL" == Darwin ]]; then
-		debugger="lldb"
-	else
-		debugger="gdb"
+	if [ -n "$(command -v gdb)" ]; then
+    	: "${debugger:=gdb}"
+	elif [ -n "$(command -v lldb)" ]; then
+    	: "${debugger:=lldb}"
 	fi
+}
 
+rclean_exe() {
+	find . -type f -perm +111 -exec rm -rf {} \; 2>/dev/null
+}
+
+clean_exe() {
+	find . -type f -maxdepth 1 -perm +111 -exec rm -rf {} \; 2>/dev/null
+}
+
+clean() {
+
+	find . -type d -name "*.dSYM" -exec rm -rf {} \; 2>/dev/null
+    find . -type f -name "*.out" -exec rm -rf {} \; 2>/dev/null
+    find . -type f -name "tempCodeRunnerFile.*" -exec rm -rf {} \; 2>/dev/null
 }
 
 run() {
@@ -67,7 +107,6 @@ run() {
         _ERROR_UFTC_
         _EXIT_
     fi
-
 }
 
 if [[ -z $* ]]; then
@@ -82,7 +121,7 @@ for arg in "$@"; do
         ;;
     *".c" | *".cpp")
         FILE_LOCATION="${arg}"
-        if [ ! -f $FILE_LOCATION ]; then
+        if [ ! -f "$FILE_LOCATION" ]; then
             _ERROR_UFTC_
             _EXIT_
         fi
@@ -97,10 +136,12 @@ for arg in "$@"; do
             run
         fi
         ;;
-    "--cc="*)
+    "--cc="* | "-c="*)
         c="${arg#*=}"
         if [[ -z "$c" ]]; then
             echo "Use --cc=gcc/clang"
+            echo "OR"
+            echo "Use -c=gcc/clang"
         else
             export CC="${c}"
             shift
@@ -116,11 +157,15 @@ for arg in "$@"; do
         fi
         ;;
     "clean")
-        find . -type d -name "*.dSYM" -exec rm -rf {} \; 2>/dev/null
-        find . -type f -name "*.out" -exec rm -rf {} \; 2>/dev/null
-        rm -rf tempCodeRunnerFile.c
-        ;;
-    "--debug")
+		clean
+		;;
+    "clean-exe")
+		clean_exe
+		;;
+    "rclean-exe")
+		rclean_exe
+		;;
+    "--debug" | "d")
         DEBUG=true
         ;;
     *)

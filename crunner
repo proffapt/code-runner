@@ -162,13 +162,13 @@ for arg in "$@"; do
         ;;
     "clean")
 	    clean
-	;;
+	    ;;
     "clean-exe")
 	    clean_exe
-	;;
+	    ;;
     "rclean-exe")
 	    rclean_exe
-	;;
+	    ;;
     "--debug" | "d")
         DEBUG=true
         ;;

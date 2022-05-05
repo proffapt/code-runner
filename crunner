@@ -30,7 +30,7 @@ white=$(tput setaf 7)
 USAGE="${blue}USAGE:${white} run ${cyan}file ${yellow}:${white} compiles and executes the executable
 
 ${blue}OPTIONS: ${white}
-	[${red}--cc=${white}/${red}-c${white}]=${cyan}<compiler>${white} ${yellow}:${white} compiles the *.c file with specified compiler
+	[${red}--cc=${white}/${red}-c=${white}]${cyan}<compiler>${white} ${yellow}:${white} compiles the *.c file with specified compiler
 	${red}--cxx${white}=${cyan}<compiler>${white}      ${yellow}:${white} compiles the *.cpp file with specified compiler
 	[${red}--debug${white}/${red}d${white}]           ${yellow}:${white} compiles the file and pipes it to the specified debugger
 

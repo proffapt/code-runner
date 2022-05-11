@@ -43,6 +43,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#integrating-with-vscode">Integrating with vscode</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#changelog">Change.log</a></li>
     <li><a href="#license">License</a></li>
@@ -106,6 +107,11 @@ _Copy the following commands to perform above mentioned tasks!_
   </a>
 </div>
 
+<div id="integrating-with-vscode"></div>
+
+## Integrating with vscode
+
+Create custom keybindings for vscode to use this script more conveniently in vscode, you can copy my keybindings from [vscode-keybindings](https://github.com/proffapt/code-runner/blob/main/vscode-keybindings) into you keybindings.json
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

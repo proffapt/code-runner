@@ -103,17 +103,13 @@ _Now since we are done with the setting up of environment suitable for the proje
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-```sh
-run file >>> compiles and executes the executable
-run --cc=<compiler> file >>> compiles the *.c file with specified compiler
-run -c=<compiler> file >>> compiles the *.c file with specified compiler
-run--cxx=<compiler> file >>> compiles the *.cpp file with specified compiler
-run --debug file >>> compiles the file and pipes it to the specified debugger
-run d file >>> compiles the file and pipes it to the specified debugger
-run rclean-exe >>> deletes all executable files within the folder recursively
-run clean-exe >>> deletes all executable files within the folder NON recursively
-run clean >>> removes debug folder, .out and temp files
-```
+<div align="center">
+  <a href="https://github.com/proffapt/code-runner">
+    <img src="images/usage.png" alt="product screenshot">
+  </a>
+</div>
+
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
@@ -136,15 +132,21 @@ Don't forget to give the project a star! Thanks again!
 <!-- Changelog -->
 # Changelog
 
-## v1.1.1
+## v1.1.2
 
 ### Added or Changed
-- Added this changelog :)
-- Added support for C and C++ files.
-- New help menu
-- New debugger support
-- New code flow
-- New clean modes
+- Support for python
+
+	Smart python version detector, just do `run file.py` crunner will detect which version of python to use.
+
+- New modes: persistent and compile
+
+	`persistent`: keeps the executable and cache files which it deletes by default after execution of prorgram.
+	
+	`compile`: only compiles the code, doesn't run it.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 <!-- LICENSE -->
 ## License

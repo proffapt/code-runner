@@ -74,19 +74,16 @@ This project is made with following langs/frameworks.
 
 _Now since we are done with the setting up of environment suitable for the project to compile/run, let's install and configure the project on your system locally now._
 
-1. Clone the repo
+1. Clone the repo.
+2. Make the setup script executable.
+3. Execute the setup script.
+
+_Copy the following commands to perform above mentioned tasks!_
    ```sh
    git clone https://github.com/proffapt/code-runner.git
-   ```
-2. Make the script executable
-   ```sh
-   cd ./code-runner
-   chmod +x ./crunner
-   ```
-3. Add the alias to you shell config file
-   ```sh
-   echo "alias run="path/to/crunner"" >> ~/.SHELL_CONFIG
-   source ~/.SHELL_CONFIG
+   cd code-runner
+   chmod +x setup.sh
+   ./setup.sh
    ```
 4. Run the code
    ```sh

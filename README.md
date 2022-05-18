@@ -116,15 +116,15 @@ Create custom keybindings for vscode to use this script more conveniently in vsc
 
 * `alt+space` 
 
-	- If there is no instance of terminal: Spawns a new terminal and shifts the focus to it.
-	- If the instance already exists and focus is on editor pane: Focuses the terminal.
-	- If the focus is on terminal: Focuses the editor pane keeping the terminal at it's place.
+	- **If there is no instance of terminal**: Spawns a new terminal `>` shifts the focus to it.
+	- **If the instance already exists and focus is on editor pane**: Focuses the terminal.
+	- **If the focus is on terminal**: Focuses the editor pane keeping the terminal at it's place.
 
 * `cmd+contextmenu` -- use twice for execution
 
-	- If there is no terminal instance: Spawns a new terminal, shifts focus to it(DOESN"T EXECUTE THE CODE, press again to execute the code).
-	- If instance exists and focus is on editor pane: Shifts focus to terminal(DOESN"T EXECUTE THE CODE, press again to execute the code).
-	- If the focus is on terminal: Executes the code.
+	- **If there is no terminal instance**: Spawns a new terminal `>` shifts focus to it(DOESN"T EXECUTE THE CODE, press again to execute the code).
+	- **If instance exists and focus is on editor pane**: Shifts focus to terminal(DOESN"T EXECUTE THE CODE, press again to execute the code).
+	- **If the focus is on terminal**: Executes the code.
 
 	^ **NOTE**: Code execution is also possible even if the code file is not directly inside the folder opened in vscode.
 
@@ -140,16 +140,16 @@ I made a custom keybinding to work with my code-runner on vim, add the lines fro
 
 * `rr` 
 
-	- In NORMAL mode: Saves the file, creates a new floaterm buffer, shifts focus to it, runs the code, puts you in terminal mode for giving input(CLOSE the buffer with any key after completion of execution).
+	- In NORMAL mode: Saves the file `>`  creates a new floaterm buffer `>` shifts focus to it `>` runs the code(CLOSE the buffer with any key after completion of execution).
 
 >> _Doesn't store previous execution history, as there is a new buffer created everytime_
 
 * `ff` 
 
-	- In NORMAL mode with no existing floaterm buffer: Saves the file, creates a new floaterm buffer, shifts focus to it, runs the code, puts you in terminal mode for giving input.
-	- In NORMAL mode with existing floaterm buffer but focus on code buffer: Saves the file, shifts focus to floaterm buffer, runs the code, puts you in terminal mode for giving input.
-	- In NORMAL mode with existing floaterm buffer and focus on flaoterm buffer: Hides the floaterm buffer and focuses on the code file's buffer.
-	- In TERMINAL mode: Exits the terminal mode, hides active floaterm buffer, puts you into normal mode of the working code file's buffer. 
+	- **In NORMAL mode with no existing floaterm buffer**: Saves the file `>` creates a new floaterm buffer `>` shifts focus to it `>` runs the code.
+	- **In NORMAL mode with existing floaterm buffer but focus on code buffer**: Saves the file `>` shifts focus to floaterm buffer `>` runs the code.
+	- **In NORMAL mode with existing floaterm buffer and focus on flaoterm buffer**: Hides the floaterm buffer `>` focuses on the working file's buffer.
+	- **In TERMINAL mode**: Hides active floaterm buffer `>` focuses on the working file's buffer. 
 
 >> _Stores previous execution history, as there is no new buffer created everytime, it's created only when not present else uses the same buffer_
 

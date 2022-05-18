@@ -1,0 +1,15 @@
+"   Keybinding for my code-runner
+nnoremap rr :FloatermNew --title=code-runner --height=0.6 --width=0.7 --autoclose=0 run % <cr>
+nnoremap <expr> ff expand('%:t') ==? 'fish' ? ":FloatermToggle <cr>" : execute(':ls! hR') ==? "" ? ":FloatermNew --title=code-runner --height=0.6 --width=0.7 <cr> <C-\><C-n>:FloatermToggle <cr>:w <cr>:FloatermSend --title=code-runner run % <cr>:FloatermToggle <cr>" : ":w <cr>:FloatermSend --title=code-runner run % <cr>:FloatermToggle <cr>"
+tnoremap <expr> ff "<C-\><C-n>:FloatermToggle <cr>"
+
+"   opening terminal while working on file
+nnoremap <expr> tt execute(':ls! hR') ==? "" ? ":FloatermNew --title=terminal --height=0.6 --width=0.7 <cr>" : ":FloatermToggle <cr>"
+
+"   INSTALL THE FLOATERM PLUGIN
+call plug#begin('~/.vim/plugged')
+
+  " Floating Terminal
+  Plug 'voldikss/vim-floaterm'
+
+call plug#end()

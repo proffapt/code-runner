@@ -123,17 +123,30 @@ run() {
 			rm -rf ./"${FILE%%.*}.out"
 		fi
 	elif [[ ${FILE#*.} == py ]]; then
-		## Default will be python2.
-		COMPILED="${FILE%%.*}.pyc"
+		if [[ $pyv == "" ]]; then
+			## Default will be python2.
+			COMPILED="${FILE%%.*}.pyc"
 
-		python2 -m py_compile "$FILE" 2>/dev/null
-		if [[ ! -f $COMPILED ]] || [[ $pyv == 3 ]]; then
-			py="python3"
-		else
-			py="python2"
+			python2 -m py_compile "$FILE" 2>/dev/null
+			if [[ ! -f $COMPILED ]]; then
+				py="python3"
+				dpyv=3
+			else
+				py="python2"
+				dpyv=2
+			fi
+			rm -rf "${FILE%%.*}.pyc" __pycache__
+		else 
+			if [[ $pyv == 3 ]]; then
+				py="python3"
+				dpyv=3
+			else 
+				py="python2"
+				dpyv=2
+			fi
 		fi
-		rm -rf "${FILE%%.*}.pyc" __pycache__
 
+		echo "${yellow}>> Using python $dpyv${white}"
 		if [[ $COMPILE == true ]]; then
 			"$py" -m py_compile "$FILE" 2>/dev/null
 		else
@@ -198,9 +211,7 @@ for arg in "$@"; do
 		;;
 	"--python="* | "-py="*)
 		pyv=${arg#*=}
-		if [ "$pyv" == 3 ] || [ "$pyv" == 2 ]; then
-			echo "${yellow}>> Using python $pyv${white}"
-		else
+		if [ "$pyv" != 3 ] && [ "$pyv" != 2 ]; then
 			echo "${red}ERROR: ${white}Expected versions for python are 2 and 3"
 
 			_EXIT_

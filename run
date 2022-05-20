@@ -7,8 +7,7 @@
 #  your code in multiple langs using singe command.      #
 #                                                        #
 #      Author: Arpit Bhardwaj(proffapt)                  #
-#      CO-AUTHORED BY: CyberKnight and PeroSar           #
-#      Git(hub/lab): proffapt                            #
+#      CO-AUTHORED BY: CyberKnight and PeroSar           # Git(hub/lab): proffapt                            #
 #      Twitter: @proffapt                                #
 #      Telegram: @proffapt                               #
 #      Email: proffapt@pm.me                             #
@@ -152,6 +151,16 @@ run() {
 		else
 			"$py" "$FILE"
 		fi
+	elif [[ ${FILE#*.} == rs ]]; then
+		rustc "$FILE" -o "${FILE%%.*}.out"
+
+		if [[ $COMPILE != true ]]; then
+			./"${FILE%%.*}.out"
+		fi
+
+		if [[ $PERSISTENT != true ]]; then
+			rm -rf ./"${FILE%%.*}.out"
+		fi
 	else
 		_ERROR_UFTC_
 		_EXIT_
@@ -168,7 +177,7 @@ for arg in "$@"; do
 	"-h" | "--help")
 		echo "$USAGE" && exit 0
 		;;
-	*".c" | *".cpp" | *".py")
+	*".c" | *".cpp" | *".py" | *".rs")
 		FILE_LOCATION=$arg
 		if [[ ! -f $FILE_LOCATION ]]; then
 			_ERROR_UFTC_

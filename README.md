@@ -176,18 +176,13 @@ Don't forget to give the project a star! Thanks again!
 <!-- Changelog -->
 # Changelog
 
-## v1.1.2
+## v1.1.3
 
 ### Added or Changed
-- Support for python
-
-	Smart python version detector, just do `run file.py` crunner will detect which version of python to use.
-
-- New modes: persistent and compile
-
-	`persistent`: keeps the executable and cache files which it deletes by default after execution of prorgram.
-	
-	`compile`: only compiles the code, doesn't run it.
+- Support for JAVA.
+- Smart code blocks
+- list supported languages argument
+	Now do `run ll` or `run --list-langs` to see all the supported langs in your version
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

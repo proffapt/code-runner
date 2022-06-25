@@ -104,7 +104,7 @@ _Copy the following commands to perform above mentioned tasks!_
 
 <div align="center">
   <a href="https://github.com/proffapt/code-runner">
-    <img src="images/usage.png" alt="product screenshot">
+    <img src="images/usage_1_1_3.png" alt="product screenshot">
   </a>
 </div>
 
@@ -182,6 +182,7 @@ Don't forget to give the project a star! Thanks again!
 - Support for JAVA.
 - Smart code blocks
 - list supported languages argument
+
 	Now do `run ll` or `run --list-langs` to see all the supported langs in your version
 
 <p align="right">(<a href="#top">back to top</a>)</p>

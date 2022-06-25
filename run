@@ -72,6 +72,7 @@ clean_exe() {
 clean() {
 	find . -type d -name "*.dSYM" -exec rm -rf {} \; 2>/dev/null
 	find . -type f -name "*.out" -exec rm -rf {} \; 2>/dev/null
+	find . -type f -name "*.class" -exec rm -rf {} \; 2>/dev/null
 	find . -type f -name "tempCodeRunnerFile.*" -exec rm -rf {} \; 2>/dev/null
 	rm -rf __pycache__ ./*.pyc
 }
@@ -156,6 +157,17 @@ run() {
 		fi
 		if [[ $PERSISTENT != true ]]; then
 			rm -rf ./"${FILE%%.*}.out"
+		fi
+
+	elif [[ ${FILE#*.} == java ]]; then
+		javac "$FILE"
+		JCF=$(find . -type f -name "*.class" -mmin -1)
+		JCF=${JCF:2}
+		if [[ $COMPILE != true ]]; then
+			java "${JCF%%.*}"
+		fi
+		if [[ $PERSISTENT != true ]]; then
+			rm -rf ./"$JCF"
 		fi
 
 	else

@@ -7,7 +7,8 @@
 #  your code in multiple langs using singe command.      #
 #                                                        #
 #      Author: Arpit Bhardwaj(proffapt)                  #
-#      CO-AUTHORED BY: CyberKnight and PeroSar           # Git(hub/lab): proffapt                            #
+#      CO-AUTHORED BY: CyberKnight and PeroSar           # 
+#      Git(hub/lab): proffapt                            #
 #      Twitter: @proffapt                                #
 #      Telegram: @proffapt                               #
 #      Email: proffapt@pm.me                             #
@@ -21,7 +22,7 @@
 # Can't rewrite without this banner(line 3-23)!
 
 red=$(tput setaf 1)
-green=$(tput setaf 2)
+# green=$(tput setaf 2)
 yellow=$(tput setaf 3)
 blue=$(tput setaf 4)
 cyan=$(tput setaf 6)
@@ -72,7 +73,7 @@ clean() {
 	find . -type d -name "*.dSYM" -exec rm -rf {} \; 2>/dev/null
 	find . -type f -name "*.out" -exec rm -rf {} \; 2>/dev/null
 	find . -type f -name "tempCodeRunnerFile.*" -exec rm -rf {} \; 2>/dev/null
-	rm -rf __pycache__ *.pyc
+	rm -rf __pycache__ ./*.pyc
 }
 
 run() {

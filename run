@@ -170,9 +170,11 @@ fi
 
 for arg in "$@"; do
 	case $arg in
+
 	"-h" | "--help")
 		echo "$USAGE" && exit 0
 		;;
+
 	*".c" | *".cpp" | *".py" | *".rs" | *".java")
 		FILE_LOCATION=$arg
 		if [[ ! -f $FILE_LOCATION ]]; then
@@ -189,6 +191,7 @@ for arg in "$@"; do
 			run
 		fi
 		;;
+
 	"--cc="* | "-c="*)
 		c=${arg#*=}
 		if [[ -z $c ]]; then
@@ -200,6 +203,7 @@ for arg in "$@"; do
 			shift
 		fi
 		;;
+
 	"--cxx="*)
 		cx=${arg#*=}
 		if [[ -z $cx ]]; then
@@ -211,6 +215,7 @@ for arg in "$@"; do
 			shift
 		fi
 		;;
+
 	"--python="* | "-py="*)
 		pyv=${arg#*=}
 		if [ "$pyv" != 3 ] && [ "$pyv" != 2 ]; then
@@ -218,6 +223,7 @@ for arg in "$@"; do
 			_EXIT_
 		fi
 		;;
+
 	"--debug" | "d")
 		DEBUG=true
 		;;

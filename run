@@ -90,7 +90,6 @@ run() {
 
 	if [[ ${FILE#*.} == c ]]; then
 		"${CC:=gcc}" ${CFLAGS} "$FILE" -o "${FILE%%.*}.out"
-
 		if [[ $DEBUG == true ]]; then
 			"$debugger" "${FILE%%.*}.out"
 			if [[ $PERSISTENT != true ]]; then
@@ -101,13 +100,12 @@ run() {
 				./"${FILE%%.*}.out"
 			fi
 		fi
-
 		if [[ $PERSISTENT != true ]]; then
 			rm -rf ./"${FILE%%.*}.out"
 		fi
+
 	elif [[ ${FILE#*.} == cpp ]]; then
 		"${CXX:=g++}" ${CFLAGS} "$FILE" -o "${FILE%%.*}.out"
-
 		if [[ $DEBUG == true ]]; then
 			"$debugger" "${FILE%%.*}.out"
 			if [[ $PERSISTENT != true ]]; then
@@ -118,15 +116,14 @@ run() {
 				./"${FILE%%.*}.out"
 			fi
 		fi
-
 		if [[ $PERSISTENT != true ]]; then
 			rm -rf ./"${FILE%%.*}.out"
 		fi
+
 	elif [[ ${FILE#*.} == py ]]; then
 		if [[ $pyv == "" ]]; then
 			## Default will be python2.
 			COMPILED="${FILE%%.*}.pyc"
-
 			python2 -m py_compile "$FILE" 2>/dev/null
 			if [[ ! -f $COMPILED ]]; then
 				py="python3"
@@ -145,23 +142,22 @@ run() {
 				dpyv=2
 			fi
 		fi
-
 		echo "${yellow}>> Using python $dpyv${white}"
 		if [[ $COMPILE == true ]]; then
 			"$py" -m py_compile "$FILE" 2>/dev/null
 		else
 			"$py" "$FILE"
 		fi
+
 	elif [[ ${FILE#*.} == rs ]]; then
 		rustc "$FILE" -o "${FILE%%.*}.out"
-
 		if [[ $COMPILE != true ]]; then
 			./"${FILE%%.*}.out"
 		fi
-
 		if [[ $PERSISTENT != true ]]; then
 			rm -rf ./"${FILE%%.*}.out"
 		fi
+
 	else
 		_ERROR_UFTC_
 		_EXIT_
@@ -174,17 +170,15 @@ fi
 
 for arg in "$@"; do
 	case $arg in
-
 	"-h" | "--help")
 		echo "$USAGE" && exit 0
 		;;
-	*".c" | *".cpp" | *".py" | *".rs")
+	*".c" | *".cpp" | *".py" | *".rs" | *".java")
 		FILE_LOCATION=$arg
 		if [[ ! -f $FILE_LOCATION ]]; then
 			_ERROR_UFTC_
 			_EXIT_
 		fi
-
 		if [[ $FILE_LOCATION != */* ]]; then
 			FILE=$FILE_LOCATION
 			run
@@ -200,7 +194,6 @@ for arg in "$@"; do
 		if [[ -z $c ]]; then
 			echo "${red}ERROR: ${white}No arguments given to --cc/-c"
 			echo "${cyan}USAGE: ${white}--cc/-c=gcc/clang"
-
 			_EXIT_
 		else
 			export CC=$c
@@ -212,7 +205,6 @@ for arg in "$@"; do
 		if [[ -z $cx ]]; then
 			echo "${red}ERROR: ${white}No arguments given to --cxx"
 			echo "${cyan}USAGE: ${white}--cxx=g++/clang++"
-
 			_EXIT_
 		else
 			export CXX=$cx
@@ -223,7 +215,6 @@ for arg in "$@"; do
 		pyv=${arg#*=}
 		if [ "$pyv" != 3 ] && [ "$pyv" != 2 ]; then
 			echo "${red}ERROR: ${white}Expected versions for python are 2 and 3"
-
 			_EXIT_
 		fi
 		;;

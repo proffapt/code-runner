@@ -164,13 +164,18 @@ run() {
 
 	elif [[ ${FILE#*.} == java ]]; then
 		javac "$FILE"
-		JCF=$(find . -type f -name "*.class" -mmin -1)
-		JCF=${JCF:2}
+		JCF=$(find . -type f -name "*.class" -mmin -1 | cut -c 3-)
 		if [[ $COMPILE != true ]]; then
-			java "${JCF%%.*}"
+			while IFS= read -r classFile
+			do
+				mainMethodCheck=$(grep -q "main" "$classFile" && echo "mainMethod")
+				if [[ $mainMethodCheck == "mainMethod" ]]; then
+					java "${classFile%%.*}"
+					break
+				fi
+			done < <(printf '%s\n' "$JCF")
 		fi
 		if [[ $PERSISTENT != true ]]; then
-			rm -rf ./"$JCF"
 			find . -type f -name "*.class" -mmin -2 -exec rm -rf {} \; 2>/dev/null
 		fi
 

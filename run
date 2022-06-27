@@ -171,6 +171,7 @@ run() {
 		fi
 		if [[ $PERSISTENT != true ]]; then
 			rm -rf ./"$JCF"
+			find . -type f -name "*.class" -mmin -2 -exec rm -rf {} \; 2>/dev/null
 		fi
 
 	else

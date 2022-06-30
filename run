@@ -179,6 +179,9 @@ run() {
 			find . -type f -name "*.class" -mmin -2 -exec rm -rf {} \; 2>/dev/null
 		fi
 
+	elif [[ ${FILE#*.} == sh ]]; then
+		./"$FILE"
+		
 	else
 		_ERROR_UFTC_
 		_EXIT_
@@ -204,10 +207,11 @@ for arg in "$@"; do
 		echo "    ${yellow}>>${white} Python"
 		echo "    ${yellow}>>${white} Rust"
 		echo "    ${yellow}>>${white} Java"
+		echo "    ${yellow}>>${white} Bash-Script"
 		echo
 		;;
 
-	*".c" | *".cpp" | *".py" | *".rs" | *".java")
+	*".c" | *".cpp" | *".py" | *".rs" | *".java" | *".sh")
 		FILE_LOCATION=$arg
 		if [[ ! -f $FILE_LOCATION ]]; then
 			_ERROR_UFTC_

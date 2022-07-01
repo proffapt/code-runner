@@ -176,7 +176,7 @@ run() {
 					java "${classFile%%.*}"
 					break
 				fi
-				(( classFile-- ))
+				(( classFileCount-- ))
 			done
 		fi
 		if [[ $PERSISTENT != true ]]; then

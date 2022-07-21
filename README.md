@@ -112,7 +112,7 @@ _Copy the following commands to perform above mentioned tasks!_
 
 ## Integrating with vscode
 
-Create custom keybindings for vscode to use this script more conveniently in vscode, you can copy my keybindings from [vscode-keybindings](https://github.com/proffapt/code-runner/blob/main/vscode-keybindings) into your keybindings.json
+Create custom keybindings for vscode to use this script more conveniently in vscode, you can copy my keybindings from [vscode-keybindings](https://github.com/proffapt/code-runner/blob/main/keybindings/vscode-keybindings) into your keybindings.json
 
 * `alt+space` 
 
@@ -136,7 +136,7 @@ Create custom keybindings for vscode to use this script more conveniently in vsc
 
 ## Integrating with vim
 
-I made a custom keybinding to work with my code-runner on vim, add the lines from [vim-keybindings](https://github.com/proffapt/code-runner/blob/main/vim-keybindings) to your vim configuration file
+I made a custom keybinding to work with my code-runner on vim, add the lines from [vim-keybindings](https://github.com/proffapt/code-runner/blob/main/keybindings/vim-keybindings) to your vim configuration file
 
 * `rr` 
 

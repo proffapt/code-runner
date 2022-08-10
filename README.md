@@ -176,14 +176,10 @@ Don't forget to give the project a star! Thanks again!
 <!-- Changelog -->
 # Changelog
 
-## v1.1.3
+## v1.1.4
 
 ### Added or Changed
-- Support for JAVA.
-- Smart code blocks
-- list supported languages argument
-
-	Now do `run ll` or `run --list-langs` to see all the supported langs in your version
+- Added Javascript with debugging support.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

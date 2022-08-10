@@ -188,7 +188,7 @@ run() {
 
 	elif [[ ${FILE#*.} == js ]]; then
 		if [[ $DEBUG == true ]]; then
-			node debug "$FILE"
+			node inspect "$FILE"
 		else
 			node "$FILE"
 		fi

@@ -192,6 +192,16 @@ run() {
 		else
 			node "$FILE"
 		fi
+
+	elif [[ ${FILE#*.} == go ]]; then
+		if [[ $COMPILE == true ]]; then
+			go build -o "${FILE%%.*}.out" "$FILE"
+			if [[ $PERSISTENT != true ]]; then
+				rm "${FILE%%.*}.out"
+			fi
+		else
+			go run "$FILE"
+		fi
 		
 	else
 		_ERROR_UFTC_
@@ -220,10 +230,11 @@ for arg in "$@"; do
 		echo "    ${yellow}>>${white} Java"
 		echo "    ${yellow}>>${white} Bash-Script"
 		echo "    ${yellow}>>${white} Javascript    ${cyan}[${white}with ${green}debug${white} support${cyan}]"
+		echo "    ${yellow}>>${white} Go-lang"
 		echo
 		;;
 
-	*".c" | *".cpp" | *".py" | *".rs" | *".java" | *".sh" | *".js")
+	*".c" | *".cpp" | *".py" | *".rs" | *".java" | *".sh" | *".js" | *".go")
 		FILE_LOCATION=$arg
 		if [[ ! -f $FILE_LOCATION ]]; then
 			_ERROR_UFTC_

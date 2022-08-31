@@ -1,7 +1,7 @@
 <!-- Changelog -->
 # Changelog
 
-## v1.1.4
+## v1.1.5
 
 ### Added or Changed
-- Added Javascript with debugging support.
+- Added basic support for go-lang.

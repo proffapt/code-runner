@@ -230,7 +230,7 @@ for arg in "$@"; do
 		echo "    ${yellow}>>${white} Java"
 		echo "    ${yellow}>>${white} Bash-Script"
 		echo "    ${yellow}>>${white} Javascript    ${cyan}[${white}with ${green}debug${white} support${cyan}]"
-		echo "    ${yellow}>>${white} Go-lang"
+		echo "    ${yellow}>>${white} Golang"
 		echo
 		;;
 

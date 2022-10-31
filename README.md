@@ -76,18 +76,12 @@ This project is made with following langs/frameworks.
 
 _Now since we are done with the setting up of environment suitable for the project to compile/run, let's install and configure the project on your system locally now._
 
-1. Clone the repo.
-2. Make the setup script executable.
-3. Execute the setup script.
-
+1. Run the following command
 _Copy the following commands to perform above mentioned tasks!_
    ```sh
-   git clone https://github.com/proffapt/code-runner.git
-   cd code-runner
-   chmod +x setup.sh
-   ./setup.sh
+   curl https://raw.githubusercontent.com/proffapt/code-runner/main/setup.sh | bash
    ```
-4. Run the code
+2. Run the code
    ```sh
    run my_code.c
    ```

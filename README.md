@@ -14,9 +14,9 @@
   <h3 align="center">code-runner</h3>
 
   <p align="center">
-    <i>run supported lang files with single command</i>
+    <i>execute code files with ease</i>
     <br />
-    <a href="https://github.com/proffapt/code-runner"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/proffapt/code-runner#readme"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/proffapt/code-runner/issues">Report Bug</a>
@@ -41,6 +41,9 @@
       <ul>
         <li><a href="#installation">Installation</a></li>
       </ul>
+      <ul>
+        <li><a href="#uninstallation">Uninstallation</a></li>
+      </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#integrating-with-vscode">Integrating with vscode</a></li>
@@ -54,7 +57,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is a script written in bash, which compiles the code file and run it for you and delete other junk files if created during the process of compilation, all this with one command.
+This is a script, which compiles the code file and run it for you and delete other _junk_ files if created during the process of compilation, all this with one command for all the languages supported by it. No more remembering different arguments for different compilers to compile, execut and debug the code.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -62,7 +65,7 @@ This is a script written in bash, which compiles the code file and run it for yo
 
 This project is made with following langs/frameworks.
 
-* BASH
+* [Bash](https://devdocs.io/bash/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -72,12 +75,12 @@ This project is made with following langs/frameworks.
 
 ### Installation
 
-_Now since we are done with the setting up of environment suitable for the project to compile/run, let's install and configure the project on your system locally now._
+_To install and configure the project on your system locally:_
 
 1. Copy and run the following command to install the run binary on your system.
 
    ```sh
-   curl https://raw.githubusercontent.com/proffapt/code-runner/main/setup.sh | /bin/bash
+   curl https://raw.githubusercontent.com/proffapt/code-runner/main/setup.sh | bash
    ```
 2. Run the code
    ```sh
@@ -87,10 +90,13 @@ _Now since we are done with the setting up of environment suitable for the proje
    ```sh
    run ~/path/to/my_code.c
    ```
+   
+### Uninstallation
 
-3. Uninstall using the following command
+_To uninstall the tool from your system execute the following command_
+
    ```sh
-   curl https://raw.githubusercontent.com/proffapt/code-runner/main/uninstall.sh | /bin/bash
+   curl https://raw.githubusercontent.com/proffapt/code-runner/main/uninstall.sh | bash
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -150,6 +156,7 @@ I made a custom keybinding to work with my code-runner on vim, add the lines fro
 
 >> _Stores previous execution history, as there is no new buffer created everytime, it's created only when not present else uses the same buffer_
 
+https://user-images.githubusercontent.com/86282911/204343876-fa160388-ba4c-47be-88a0-16c6f7e7c1cb.mp4
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -198,7 +205,6 @@ Do consider looking at other paradigms of this documentation
   - [How to contribute?](CONTRIBUTING.md)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 

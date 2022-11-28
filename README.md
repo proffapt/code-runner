@@ -45,7 +45,12 @@
         <li><a href="#uninstallation">Uninstallation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#examples">Examples</a></li>
+      </ul>
+    </li>
     <li><a href="#integrating-with-vscode">Integrating with vscode</a></li>
     <li><a href="#integrating-with-vim">Integrating with vim</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -110,6 +115,18 @@ _To uninstall the tool from your system execute the following command_
   	<img width="1278" alt="image" src="https://user-images.githubusercontent.com/86282911/204351618-f23628c7-83b1-4e44-9463-e89ad91f274e.png">
   </a>
 </div>
+
+### Examples 
+
+* Compilation and Execution
+
+  <img width="500" alt="image" src="https://user-images.githubusercontent.com/86282911/204359570-7351d910-cbda-4d83-9d01-9a89e27b46fd.png"> 
+* Debugging
+
+  <img width="600" alt="image" src="https://user-images.githubusercontent.com/86282911/204362397-881fd36e-c90d-426f-9130-3b6ca872ad88.png">
+* Python
+
+  <img width="600" alt="image" src="https://user-images.githubusercontent.com/86282911/204361180-899b41b6-6101-40c6-94d6-99872111daf2.png">
 
 <div id="integrating-with-vscode"></div>
 

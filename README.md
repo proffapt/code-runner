@@ -107,7 +107,7 @@ _To uninstall the tool from your system execute the following command_
 
 <div align="center">
   <a href="https://github.com/proffapt/code-runner">
-    <img src="images/usage_1_1_3.png" alt="product screenshot">
+  	<img width="1278" alt="image" src="https://user-images.githubusercontent.com/86282911/204351618-f23628c7-83b1-4e44-9463-e89ad91f274e.png">
   </a>
 </div>
 

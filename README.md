@@ -168,6 +168,8 @@ Create custom keybindings for vscode to use this script more conveniently in vsc
 
 >> _Stores previous execution history, as there is no new terminal created everytime, it's created only when not present else uses the same terminal_
 
+https://user-images.githubusercontent.com/86282911/204466533-977280fc-a1a7-492f-bf91-9090d5c70cf4.mp4
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <div id="integrating-with-vim"></div>

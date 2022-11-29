@@ -33,6 +33,9 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#why-this-code-runner">Why this Code Runner?</a></li>
+      </ul>
+      <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -64,7 +67,16 @@
 
 This is a script, which compiles the code file and run it for you and delete other _junk_ files if created during the process of compilation, all this with one command for all the languages supported by it. No more remembering different arguments for different compilers to compile, execut and debug the code.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+### Why this Code Runner?
+
+- Can detect correct version of python with 90% accuracy.
+- Has inbuilt debugger support.
+- Custom made keybindings for [vim](#integrating-with-vim) and [vscode](#integrating-with-vscode).
+- Robust code, deals with all possible cases.
+	- Can execute files with spaces in their names.
+	- Can execute from any location.
+- Automatically cleans executable files by default.
+- Highest number of languages supported compared to its alternatives.
 
 ### Built With
 
@@ -96,6 +108,8 @@ _To install and configure the project on your system locally:_
    run ~/path/to/my_code.c
    ```
    
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ### Uninstallation
 
 _To uninstall the tool from your system execute the following command_
@@ -116,6 +130,8 @@ _To uninstall the tool from your system execute the following command_
   </a>
 </div>
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ### Examples 
 
 * Compilation and Execution
@@ -127,6 +143,8 @@ _To uninstall the tool from your system execute the following command_
 * Python
 
   <img width="600" alt="image" src="https://user-images.githubusercontent.com/86282911/204361180-899b41b6-6101-40c6-94d6-99872111daf2.png">
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <div id="integrating-with-vscode"></div>
 

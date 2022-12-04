@@ -204,6 +204,9 @@ run() {
 			go run "$FILE"
 		fi
 		
+	elif [[ ${FILE#*.} == pl ]]; then
+        perl "$FILE"
+
 	else
 		_ERROR_UFTC_
 		_EXIT_
@@ -235,7 +238,7 @@ for arg in "$@"; do
 		echo
 		;;
 
-	*".c" | *".cpp" | *".py" | *".rs" | *".java" | *".sh" | *".js" | *".go")
+	*".c" | *".cpp" | *".py" | *".rs" | *".java" | *".sh" | *".js" | *".go"| *".pl")
 		FILE_LOCATION=$arg
 		if [[ ! -f $FILE_LOCATION ]]; then
 			_ERROR_UFTC_

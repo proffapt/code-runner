@@ -213,6 +213,9 @@ run() {
 	elif [[ ${FILE#*.} == rb ]]; then
         ruby "$FILE"
 
+	elif [[ ${FILE#*.} == hs ]]; then
+        runghc "$FILE" 
+
 	else
 		_ERROR_UFTC_
 		_EXIT_
@@ -244,10 +247,11 @@ for arg in "$@"; do
 		echo "    ${yellow}>>${white} Perl"
 		echo "    ${yellow}>>${white} Lua"
 		echo "    ${yellow}>>${white} Ruby"
+		echo "    ${yellow}>>${white} Haskell"
 		echo
 		;;
 
-	*".c" | *".cpp" | *".py" | *".rs" | *".java" | *".sh" | *".js" | *".go" | *".pl" | *".lua" | *".rb")
+	*".c" | *".cpp" | *".py" | *".rs" | *".java" | *".sh" | *".js" | *".go" | *".pl" | *".lua" | *".rb" | *".hs")
 		FILE_LOCATION=$arg
 		if [[ ! -f $FILE_LOCATION ]]; then
 			_ERROR_UFTC_

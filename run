@@ -223,7 +223,7 @@ run() {
         fi
 
         if [[ $PERSISTENT != true ]]; then
-            rm "${FILE%%.*}.o" "${FILE%%.*}.hi" "${FILE%%.*}"
+            rm "${FILE%%.*}.o" "${FILE%%.*}.hi"
         fi
 
 	else

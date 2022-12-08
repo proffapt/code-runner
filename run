@@ -214,13 +214,16 @@ run() {
         ruby "$FILE"
 
 	elif [[ ${FILE#*.} == hs ]]; then
-		if [[ $COMPILE == true ]]; then
+		if [[ $DEBUG == true ]]; then
+			ghci "$FILE"
+		elif [[ $COMPILE == true ]]; then
 			ghc --make "$FILE"
-			if [[ $PERSISTENT != true ]]; then
-				rm "${FILE%%.*}.o" "${FILE%%.*}.hi" "${FILE%%.*}"
-			fi
         else
             runghc "$FILE" 
+        fi
+
+        if [[ $PERSISTENT != true ]]; then
+            rm "${FILE%%.*}.o" "${FILE%%.*}.hi" "${FILE%%.*}"
         fi
 
 	else

@@ -197,34 +197,34 @@ run() {
 	elif [[ ${FILE#*.} == go ]]; then
 		if [[ $COMPILE == true ]]; then
 			go build -o "${FILE%%.*}.out" "$FILE"
-			if [[ $PERSISTENT != true ]]; then
-				rm "${FILE%%.*}.out"
-			fi
 		else
 			go run "$FILE"
+		fi
+		if [[ $PERSISTENT != true ]]; then
+			rm "${FILE%%.*}.out"
 		fi
 		
 	elif [[ ${FILE#*.} == pl ]]; then
         perl "$FILE"
 
 	elif [[ ${FILE#*.} == lua ]]; then
-        lua "$FILE"
+		lua "$FILE"
 
 	elif [[ ${FILE#*.} == rb ]]; then
-        ruby "$FILE"
+		ruby "$FILE"
 
 	elif [[ ${FILE#*.} == hs ]]; then
 		if [[ $DEBUG == true ]]; then
 			ghci "$FILE"
 		elif [[ $COMPILE == true ]]; then
 			ghc --make "$FILE"
-        else
-            runghc "$FILE" 
-        fi
+		else
+			runghc "$FILE" 
+		fi
 
-        if [[ $PERSISTENT != true ]]; then
-            rm "${FILE%%.*}.o" "${FILE%%.*}.hi"
-        fi
+		if [[ $PERSISTENT != true ]]; then
+			rm "${FILE%%.*}.o" "${FILE%%.*}.hi" "${FILE%%.*}"
+		fi
 
 	else
 		_ERROR_UFTC_
@@ -315,9 +315,6 @@ for arg in "$@"; do
 		;;
 	"--persistent" | "p")
 		PERSISTENT=true
-		;;
-	"--no-persistent" | "np")
-		PERSISTENT=false
 		;;
 	"--compile" | "c")
 		COMPILE=true

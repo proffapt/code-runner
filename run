@@ -205,7 +205,7 @@ run() {
 		fi
 		
 	elif [[ ${FILE#*.} == pl ]]; then
-        perl "$FILE"
+		perl "$FILE"
 
 	elif [[ ${FILE#*.} == lua ]]; then
 		lua "$FILE"

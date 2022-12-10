@@ -1,7 +1,11 @@
 <!-- Changelog -->
 # Changelog
 
-## v1.1.5
+## v1.1.6
 
 ### Added or Changed
-- Added basic support for go-lang.
+- Added support for following languages
+	- Perl
+	- Lua
+	- Ruby
+	- Haskell (with debugging support)

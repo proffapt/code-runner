@@ -255,7 +255,7 @@ for arg in "$@"; do
 		echo "    ${yellow}>>${white} Perl"
 		echo "    ${yellow}>>${white} Lua"
 		echo "    ${yellow}>>${white} Ruby"
-		echo "    ${yellow}>>${white} Haskell    ${cyan}[${white}with ${green}debug${white} support${cyan}]"
+		echo "    ${yellow}>>${white} Haskell       ${cyan}[${white}with ${green}debug${white} support${cyan}]"
 		echo
 		;;
 
@@ -328,7 +328,7 @@ for arg in "$@"; do
 		rclean_exe
 		;;
 	"--version" | "v")
-		echo "${cyan}code-runner ${white}version : ${yellow}1.1.5${white}"
+		echo "${cyan}code-runner ${white}version : ${yellow}1.1.6${white}"
 		;;
 	*)
 		_ERROR_UFTC_

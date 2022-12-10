@@ -257,7 +257,7 @@ for arg in "$@"; do
 		echo "    ${yellow}>>${white} Perl"
 		echo "    ${yellow}>>${white} Lua"
 		echo "    ${yellow}>>${white} Ruby"
-		echo "    ${yellow}>>${white} Haskell"
+		echo "    ${yellow}>>${white} Haskell    ${cyan}[${white}with ${green}debug${white} support${cyan}]"
 		echo
 		;;
 

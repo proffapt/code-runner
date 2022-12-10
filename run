@@ -223,9 +223,6 @@ run() {
 			runghc "$FILE" 
 		fi
 
-		if [[ $PERSISTENT != true ]]; then
-			rm "${FILE%%.*}.o" "${FILE%%.*}.hi" "${FILE%%.*}"
-		fi
 
 	else
 		_ERROR_UFTC_

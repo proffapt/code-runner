@@ -216,7 +216,8 @@ run() {
 	elif [[ ${FILE#*.} == hs ]]; then
 		if [[ $DEBUG == true ]]; then
 			ghci "$FILE"
-		elif [[ $COMPILE == true ]]; then
+		fi
+		if [[ $COMPILE == true ]]; then
 			ghc --make "$FILE"
 		else
 			runghc "$FILE" 

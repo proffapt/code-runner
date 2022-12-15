@@ -92,7 +92,12 @@ This project is made with following langs/frameworks.
 
 ### Installation
 
-_To install and configure the project on your system locally:_
+_To install and configure the project on your system locally, use suitable method:_
+
+- [Using curl](#install-using-curl)
+- [Using brew](#install-using-brew)
+
+#### Install using CURL
 
 1. Copy and run the following command to install the run binary on your system.
 
@@ -107,15 +112,32 @@ _To install and configure the project on your system locally:_
    ```sh
    run ~/path/to/my_code.c
    ```
-   
+
+#### Install using BREW
+
+   ```bash
+   brew tap proffapt/brewtap
+   brew install code-runner
+   ```
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Uninstallation
 
-_To uninstall the tool from your system execute the following command_
+_To uninstall the tool from your system execute the following command, depending upon your installation_
+
+- [Using curl](#uninstall-using-curl)
+- [Using brew](#uninstall-using-brew)
+
+#### Uninstall using CURL
 
    ```sh
    curl https://raw.githubusercontent.com/proffapt/code-runner/main/uninstall.sh | bash
+   ```
+   
+#### Uninstall using BREW
+   ```bash
+   brew uninstall code-runner
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>

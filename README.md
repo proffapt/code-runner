@@ -102,7 +102,7 @@ _To install and configure the project on your system locally, use suitable metho
 1. Copy and run the following command to install the run binary on your system.
 
    ```sh
-   curl https://raw.githubusercontent.com/proffapt/code-runner/main/setup.sh | bash
+   curl https://raw.githubusercontent.com/proffapt/code-runner/main/.setup/install.sh | bash
    ```
 2. Run the code
    ```sh
@@ -132,7 +132,7 @@ _To uninstall the tool from your system execute the following command, depending
 #### Uninstall using CURL
 
    ```sh
-   curl https://raw.githubusercontent.com/proffapt/code-runner/main/uninstall.sh | bash
+   curl https://raw.githubusercontent.com/proffapt/code-runner/main/.setup/uninstall.sh | bash
    ```
    
 #### Uninstall using BREW

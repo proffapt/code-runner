@@ -238,7 +238,7 @@ for arg in "$@"; do
 		echo
 		;;
 	"--version" | "v")
-		echo "${cyan}code-runner ${white}version : ${yellow}1.2.0${white}"
+		echo "${cyan}code-runner ${white}version : ${yellow}1.1.7${white}"
 		;;
 
 	"--cc="* | "-c="*)

@@ -1,11 +1,8 @@
 <!-- Changelog -->
 # Changelog
 
-## v1.1.6
+## v1.1.7
 
 ### Added or Changed
-- Added support for following languages
-	- Perl
-	- Lua
-	- Ruby
-	- Haskell (with debugging support)
+- Better error handling
+- Better Code logic in handling if-else ladder

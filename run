@@ -43,8 +43,8 @@ ${blue}Clean Utility:${white}
   run ${red}clean${white}      ${yellow}:${white} removes debug folder, executables and temp files
 
 ${blue}Miscellaneous:${white}
-  run [${red}--list-langs${white}/${red}ll${white}] ${yellow}:${white} lists all languages supported by current version of code-runner
-  run [${red}--version${white}/${red}v${white}]     ${yellow}:${white} echoes the current version of code-runner"
+  run [${red}--list-langs${white}/${red}-ll${white}] ${yellow}:${white} lists all languages supported by current version of code-runner
+  run [${red}--version${white}/${red}-v${white}]     ${yellow}:${white} echoes the current version of code-runner"
 
 _ERROR_UFTC_() {
 	echo "${red}ERROR: ${white}This file type can't be compiled or the file does not exist!"
@@ -83,7 +83,6 @@ clean() {
 run() {
 
 	set -m
-	default_debugger
 
 	CFLAGS="-Wall"
 	if [[ $DEBUG == true ]]; then
@@ -93,35 +92,29 @@ run() {
 	fi
 
 	if [[ ${FILE#*.} == c ]]; then
+		default_debugger
 		"${CC:=gcc}" ${CFLAGS} "$FILE" -o "${FILE%%.*}.out"
 		if [[ $DEBUG == true ]]; then
 			"$debugger" "${FILE%%.*}.out"
-			if [[ $PERSISTENT != true ]]; then
-				rm -rf ./"${FILE%%.*}.out.dSYM"
-			fi
-		else
-			if [[ $COMPILE != true ]]; then
-				./"${FILE%%.*}.out"
-			fi
+		elif [[ $COMPILE != true ]]; then
+			./"${FILE%%.*}.out"
 		fi
 		if [[ $PERSISTENT != true ]]; then
 			rm -rf ./"${FILE%%.*}.out"
+			rm -rf ./"${FILE%%.*}.out.dSYM"
 		fi
 
 	elif [[ ${FILE#*.} == cpp ]]; then
+		default_debugger
 		"${CXX:=g++}" ${CFLAGS} "$FILE" -o "${FILE%%.*}.out"
 		if [[ $DEBUG == true ]]; then
 			"$debugger" "${FILE%%.*}.out"
-			if [[ $PERSISTENT != true ]]; then
-				rm -rf ./"${FILE%%.*}.out.dSYM"
-			fi
-		else
-			if [[ $COMPILE != true ]]; then
-				./"${FILE%%.*}.out"
-			fi
+		elif [[ $COMPILE != true ]]; then
+			./"${FILE%%.*}.out"
 		fi
 		if [[ $PERSISTENT != true ]]; then
 			rm -rf ./"${FILE%%.*}.out"
+			rm -rf ./"${FILE%%.*}.out.dSYM"
 		fi
 
 	elif [[ ${FILE#*.} == py ]]; then
@@ -221,7 +214,6 @@ run() {
 		else
 			runghc "$FILE" 
 		fi
-
 
 	else
 		_ERROR_UFTC_
@@ -326,7 +318,7 @@ for arg in "$@"; do
 	"rcexe")
 		rclean_exe
 		;;
-	"--version" | "v")
+	"--version" | "-v")
 		echo "${cyan}code-runner ${white}version : ${yellow}1.2.0${white}"
 		;;
 	*)

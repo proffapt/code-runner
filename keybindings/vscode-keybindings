@@ -1,7 +1,9 @@
-// Replace only the key argument with your choice of key-combination
+// README
+//  Replace only the "key" argument with your choice of key-combination
+//  Add the following key-combination to your vscode key-combination preference file
+//
 
 // Switch focus between terminal and editor
-// Start
 {
 	"key": "alt+space",
 	"command": "workbench.action.terminal.newWithCwd",
@@ -20,10 +22,8 @@
 	"command": "workbench.action.focusActiveEditorGroup",
 	"when": "terminalIsOpen && terminalFocus"
 },
-// End
 
-// My Code runner
-// Start
+// code-runner by https://github.com/proffapt/
 {
 	"key": "cmd+contextmenu",
 	"command": "terminal.focus",
@@ -35,4 +35,3 @@
 	"args": {"text": "run '${fileBasename}'\u000D"},
 	"when": "terminalIsOpen && terminalFocus"
 }
-// End

@@ -1,0 +1,19 @@
+-- README
+--   Install the nvterm(NvChad/nvterm) plugin
+--   Add the following mappings to your mappings.lua file
+--
+
+--   Keybinding code-runner by https://github.com/proffapt
+["rr"] = {
+  function()
+    if vim.bo.modified then
+      vim.api.nvim_command(":w")
+    end
+    local filename = vim.fn.expand('%')
+    require("nvterm.terminal").send(" run " .. filename, "horizontal")
+    vim.defer_fn(function()
+      vim.cmd("wincmd j")
+    end, 50)
+  end,
+  "spawn code-runner"
+},

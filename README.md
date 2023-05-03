@@ -35,9 +35,6 @@
       <ul>
         <li><a href="#why-this-code-runner">Why this Code Runner?</a></li>
       </ul>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -77,12 +74,6 @@ This is a script, which compiles the code file and run it for you and delete oth
 	- Can execute from any location.
 - Automatically cleans executable files by default.
 - Highest number of languages supported compared to its alternatives.
-
-### Built With
-
-This project is made with following langs/frameworks.
-
-* [Bash](https://devdocs.io/bash/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

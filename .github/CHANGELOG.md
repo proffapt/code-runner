@@ -1,8 +1,7 @@
 <!-- Changelog -->
 # Changelog
 
-## v1.1.7
+## v1.1.8
 
 ### Added or Changed
-- Better error handling
-- Better Code logic in handling if-else ladder
+- Adding support for c++20, fixing upcoming bugs

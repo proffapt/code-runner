@@ -83,7 +83,7 @@ run() {
 	# C[++] fam specifics
 	default_debugger
 	CFLAGS="-Wall"
-  CPPSTD="-std=c++20"
+    CPPSTD="-std=c++20"
 	if [[ $DEBUG == true ]]; then
 		CFLAGS+=" -g -O0"
 	else

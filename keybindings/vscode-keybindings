@@ -1,37 +1,56 @@
 // README
 //  Replace only the "key" argument with your choice of key-combination
 //  Add the following key-combination to your vscode key-combination preference file
-//
+//  Checkout https://github.com/proffapt/vscode-conf for more of my config
 
 // Switch focus between terminal and editor
 {
-	"key": "alt+space",
-	"command": "workbench.action.terminal.newWithCwd",
-	"args": {
-		 "cwd": "${fileDirname}"
-	},
-	"when": "!terminalIsOpen"
+  "key": "ctrl+space",
+  "command": "workbench.action.terminal.newWithCwd",
+  "args": { "cwd": "${fileDirname}" },
+  "when": "!terminalIsOpen"
 },
 {
-	"key": "alt+space",
-	"command": "terminal.focus",
-	"when": "terminalIsOpen && !terminalFocus"
+  "key": "ctrl+space",
+  "command": "terminal.focus",
+  "when": "terminalIsOpen && !terminalFocus"
 },
 {
-	"key": "alt+space",
-	"command": "workbench.action.focusActiveEditorGroup",
-	"when": "terminalIsOpen && terminalFocus"
+  "key": "ctrl+space",
+  "command": "workbench.action.focusActiveEditorGroup",
+  "when": "terminalIsOpen && terminalFocus"
 },
 
-// code-runner by https://github.com/proffapt/
+// code-runner: https://github.com/proffapt/code-runner
 {
-	"key": "cmd+contextmenu",
-	"command": "terminal.focus",
-	"when": "!terminalFocus"
+  "key": "cmd+r",
+  "command": "extension.multiCommand.execute",
+  "args": {
+    "sequence": [
+      {
+        "command": "workbench.action.terminal.newWithCwd",
+        "args": { "cwd": "${fileDirname}" }
+      },
+      {
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": "run '${fileBasename}'\u000D" }
+      },
+      "terminal.focus"
+    ]
+  },
+  "when": "!terminalIsOpen"
 },
 {
-	"key": "cmd+contextmenu",
-	"command": "workbench.action.terminal.sendSequence",
-	"args": {"text": "run '${fileBasename}'\u000D"},
-	"when": "terminalIsOpen && terminalFocus"
-}
+  "key": "cmd+r",
+  "command": "extension.multiCommand.execute",
+  "args": {
+    "sequence": [
+      {
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": "run '${fileBasename}'\u000D" }
+      },
+      "terminal.focus"
+    ]
+  },
+  "when": "terminalIsOpen"
+},
